@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "serve": "nodemon index.js"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,20 @@
   },
   "homepage": "https://github.com/laybson/dmv-back#readme",
   "dependencies": {
-    "morgan": "^1.9.0"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.10",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "swagger-express": "^1.0.5",
+    "validator": "^10.7.0"
   },
   "devDependencies": {
+    "nodemon": "^1.18.4",
     "supertest": "^3.1.0"
   }
 }

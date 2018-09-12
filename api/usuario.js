@@ -1,19 +1,30 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 
-// middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
-// define the home page route
-router.get('/', (req, res) => {
-  res.send('Usuarios')
-})
+/** GET api/usuario/test
+ * @desc    Testa a rota de Usuário
+ * @access  Public
+ */
+router.get("/test", (req, res) =>
+  res.json({ msg: "You're so small" })
+);
 
-// define the about route
-router.get('/1', function (req, res) {
-  res.send('Usuario')
-})
+/** POST api/usuario/signin
+ * @desc    Cadastrar usuário
+ * @access  Public
+ */
+router.post("/signin", (req, res) => {});
+
+/** POST api/usuario/login
+ * @desc    Login de usuário
+ * @access  Public
+ */
+router.post("/login", (req, res) => {});
+
+/** GET api/usuario/current
+ * @desc   Usuário corrente
+ * @access  Public
+ */
+router.get("/current", (req, res) => {});
 
 module.exports = router
