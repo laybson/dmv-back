@@ -14,7 +14,10 @@ const DepSchema = new Schema({
         'PV', 'PDC'],
         default: ['S/P']
     },
-    votos: [Schema.Types.ObjectId]
+    votos: {
+        type: Number,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Deputado', DepSchema);

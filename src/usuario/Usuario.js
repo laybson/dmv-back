@@ -16,8 +16,7 @@ const UserSchema = new Schema({
         required: true,
         enum: ['DEFAULT', 'ADMIN'],
         default: ['DEFAULT']
-    },
-    votos: [Schema.Types.ObjectId]
+    }    
 });
 
 UserSchema.methods.verificarSenha = (senha) => {
