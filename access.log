@@ -1,0 +1,4 @@
+::1 - - [10/Oct/2018:01:32:30 +0000] "GET / HTTP/1.1" 200 17 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+::1 - - [10/Oct/2018:01:32:30 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+::1 - - [10/Oct/2018:01:32:46 +0000] "GET /usuario HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+::1 - - [10/Oct/2018:01:32:48 +0000] "GET /usuario HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"

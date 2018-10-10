@@ -6,15 +6,18 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const session = require('express-session');
 const cache = require('memory-cache');
-const jwt = require('jsonwebtoken');
 
 const usuario = require('./src/usuario/usuarioRoutes');
 const deputado = require('./src/deputado/deputadoRoutes');
 const swagger = require('./docs/docRoutes');
 
 const app = express();
+app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const porta = 3000;
 
