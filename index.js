@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cache = require('memory-cache');
+const jwt = require('jsonwebtoken');
 
 const usuario = require('./src/usuario/usuarioRoutes');
 const deputado = require('./src/deputado/deputadoRoutes');
@@ -17,7 +18,6 @@ const app = express();
 
 const porta = 3000;
 
-// create a write stream (in append mode)
 let accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 app.use(morgan('combined', {stream: accessLogStream}))
 
@@ -37,7 +37,7 @@ swagger(app);
 app.get('/', (req, res) => res.send("DEVOLVA MEU VOTO!"))
 
 app.get('/usuario', function(req, res) {
-  res.status(200).json({ name: 'Laybson' });
+  res.status(200).json({ cpf: '00011112399' });
 });
 
 app.get('/deputado/:idDeputado', (req, res) => res.send("Deputado Fulano"))

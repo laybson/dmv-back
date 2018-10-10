@@ -2,10 +2,10 @@ const swaggerJSDoc = require('swagger-jsdoc');
 
 const swaggerDef = {
     'basePath': '/',
-    'host': 'localhost:3000',
+    'host': 'localhost:8080',
     'info': {
-        'description': 'Sistema com intuito de ajudar os alunos em seus estudos',
-        'title': 'Sem nome',
+        'description': '...',
+        'title': '...',
         'version': '1.0.0'
     }
 };
