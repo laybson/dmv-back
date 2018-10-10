@@ -8,23 +8,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cache = require('memory-cache');
-// const auth = require('./src/autenticacao/authRoutes');
-
 
 const usuario = require('./src/usuario/usuarioRoutes');
 const deputado = require('./src/deputado/deputadoRoutes');
 const swagger = require('./docs/docRoutes');
 
 const app = express();
-
-// app.use((req, res, next) => {
-//     res.header('Content-Type', 'application/json');
-//     next();  // sem o next, a chamada para aqui
-// });
-//
-// //rotas
-// app.use("/api/usuario", usuario);
-// app.use("/api/deputado", deputado);
 
 const porta = 3000;
 
@@ -44,7 +33,6 @@ app.use(cors());
 usuario(app);
 deputado(app);
 swagger(app);
-// auth(app);
 
 app.get('/', (req, res) => res.send("DEVOLVA MEU VOTO!"))
 
