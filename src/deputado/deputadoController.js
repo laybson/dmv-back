@@ -2,8 +2,8 @@ const Deputado = require('./Deputado');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-exports.listaDeputados = (req, res) => {
-    Deputado.find((err, deputado) => {
+exports.getDeputado = (req, res) => {
+    Deputado.findById(req.params.idDeputado, (err, deputado) => {
         if (err) {
             res.send(err);
         }
@@ -21,8 +21,8 @@ exports.criarDeputado = (req, res) => {
     });
 };
 
-exports.getDeputado = (req, res) => {
-    Deputado.findById(req.params.idDeputado, (err, deputado) => {
+exports.atualizarDeputado = (req, res) => {
+    Deputado.findOneAndUpdate({_id: req.params.idDeputado}, req.body, {new: true}, (err, deputado) => {
         if (err) {
             res.send(err);
         }
@@ -30,8 +30,8 @@ exports.getDeputado = (req, res) => {
     });
 };
 
-exports.atualizarDeputado = (req, res) => {
-    Deputado.findOneAndUpdate({_id: req.params.idDeputado}, req.body, {new: true}, (err, deputado) => {
+exports.listaDeputados = (req, res) => {
+    Deputado.find((err, deputado) => {
         if (err) {
             res.send(err);
         }
