@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const PersonaSchema = new Schema ({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
   name: {
     type: String,
     required: true,
@@ -12,10 +16,12 @@ const PersonaSchema = new Schema ({
     type: String
   },
   cRating: {
-    type: Number
+    type: Number,
+    defaut: 0
   },
   gRating: {
-    type: Number
+    type: Number,
+    defaut: 0
   },
   actions: [
     {

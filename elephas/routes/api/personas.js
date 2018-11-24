@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const validatePersonaInput = require('../../validation/persona');
+
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Persona = require('../../models/Persona');
@@ -47,6 +49,11 @@ router.get('/all'/*, passport.authenticate('jwt', { session: false})*/, (reg, re
 // @desc POST Create or Edit persona
 // @access Private
 router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => {
+  const { errors, isValid } = validatePersonaInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const personaFields = {};
   personaFields.user = req.user.id;
   if (req.body.name) personaFields.name = req.body.name;
