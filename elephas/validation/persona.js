@@ -6,12 +6,12 @@ module.exports = function validatePersonaInput(data) {
 
   data.name = !isEmpty(data.name) ? data.name : '';
 
-  if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
-  }
-
   if (!Validator.isLength(data.name, { min: 2, max: 40 })) {
     errors.name = 'Name must be between 2 and 40 characters';
+  }
+
+  if (Validator.isEmpty(data.name)) {
+    errors.name = 'Name field is required';
   }
 
   if (!isEmpty(data.email)) {

@@ -9,14 +9,14 @@ module.exports = function validateLoginInput(data) {
 
   if (!Validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
+  }  
+
+  if (!Validator.isLength(data.password, { min: 6 })) {
+    errors.password = 'Password must have at least 6 characters';
   }
 
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password field is required';
-  }
-
-  if (!Validator.isLength(data.password, { min: 6 })) {
-    errors.password = 'Password must have at least 6 characters';
   }
 
   if (Validator.isEmpty(data.email)) {
