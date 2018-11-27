@@ -94,7 +94,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
   if (req.body.handle) profileFields.handle = req.body.handle;
 
   if(typeof req.body.personas !== 'undefined'){
-    profileFields.personas = req.body.personas.split(',');
+    // profileFields.personas = req.body.personas.split(',');
   }
 
   Profile.findOne({user: req.user.id}).then(profile => {
@@ -116,5 +116,20 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
     }
   })
 });
+
+// @route   DELETE api/profile
+// @desc    Delete user and profile
+// @access  Private
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ success: true })
+      );
+    });
+  }
+);
 
 module.exports = router;
