@@ -18,7 +18,7 @@ export const getCurrentPersona = () => dispatch => {
 
 export const createPersona = (personaData, history) => dispatch => {
   axios.post('api/personas', personaData).then(res =>
-    history.push('/dashboard')).catch(err => dispatch({
+    history.push('/personas')).catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data
     }))

@@ -14,8 +14,8 @@ class CreatePersona extends Component {
     this.state = {
       displaySocialInputs: false,
       name: '',
-      cRating: 0,
-      gRating: 0,
+      cRating: '',
+      gRating: '',
       email: '',
       twitter: '',
       instagram: '',

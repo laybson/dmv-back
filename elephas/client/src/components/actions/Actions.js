@@ -7,7 +7,7 @@ import Spinner from '../common/Spinner';
 class Actions extends Component {
   render () {
     return (
-      <div className="feed">
+      <div className="actions">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

@@ -28,16 +28,18 @@ class Persona extends Component {
     } else {
       personaContent = (
         <div>
+        <Link to="/personas" className="btn btn-light mb-3 float-left">
+          Back to Personas
+        </Link>
+        <button onClick={ this.onDeleteClick.bind(this) } className="btn btn-danger">Delete Persona</button>
           <div className="row">
-            <div className="col-md-6">
-              <Link to="/personas" className="btn btn-light mb-3 float-left">
-                Back to Personas
-              </Link>
-              <button onClick={ this.onDeleteClick.bind(this) } className="btn btn-danger">Delete Persona</button>
+            <div className="container">
+              <div className="col-md-12">
+                <PersonaHeader persona={persona} />
+              </div>
+              <div className="col-md-6" />
+              <PersonaActions />
             </div>
-            <div className="col-md-6" />
-            <PersonaHeader persona={persona} />
-            <PersonaActions />
           </div>
         </div>
       )

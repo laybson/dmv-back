@@ -41,7 +41,7 @@ class CreateProfile extends Component {
     return (
       <div>
         <form onSubmit={ this.onSubmit }>
-          <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/>
+          <input type="submit" value="Next" className="btn btn-info btn-block mt-4"/>
         </form>
       </div>
     )

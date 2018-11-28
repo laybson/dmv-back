@@ -80,6 +80,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     cRating: req.body.cRating,
     gRating: req.body.gRating,
   });
+  console.log("newAction",newAction)
 
   newAction.save().then(action => res.json(action));
 });
