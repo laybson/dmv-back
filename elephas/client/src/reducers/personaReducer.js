@@ -1,11 +1,35 @@
+import { GET_PERSONA, GET_PERSONAS, PERSONA_LOADING, CLEAR_CURRENT_PERSONA } from '../rActions/types';
+
 const initialState = {
-  profile: null,
+  persona: null,
   personas: null,
   loading: false
 }
 
 export default function(state = initialState, action) {
   switch(action.type) {
+    case PERSONA_LOADING:
+      return {
+        ...state,
+        loading: true
+      }
+    case GET_PERSONA:
+      return {
+        ...state,
+        persona: action.payload,
+        loading: false
+      }
+    case GET_PERSONAS:
+      return {
+        ...state,
+        personas: action.payload,
+        loading: false
+      }
+    case CLEAR_CURRENT_PERSONA:
+      return {
+        ...state,
+        persona: null
+      }
     default:
       return state;
   }

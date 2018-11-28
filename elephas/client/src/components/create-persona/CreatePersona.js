@@ -39,8 +39,8 @@ class CreatePersona extends Component {
 
     const personaData = {
       name: this.state.name,
-      cRating: this.state.cRating,
-      gRating: this.state.gRating,
+      cRating: (this.state.cRating ? this.state.cRating : '0'),
+      gRating: (this.state.gRating ? this.state.gRating : '0'),
       email: this.state.email,
       twitter: this.state.twitter,
       instagram: this.state.instagram,

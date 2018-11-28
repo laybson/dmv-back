@@ -15,7 +15,7 @@ const Persona = require('../../models/Persona');
 router.get('/test', (req, res) => res.json({msg: "Personas Works"}));
 
 
-// @route GET api/persona/name/:name
+// @route GET api/personas/name/:name
 // @desc GET persona by name
 // @access Private
 router.get('/name/:name'/*, passport.authenticate('jwt', { session: false})*/, (req, res) => {
@@ -30,10 +30,24 @@ router.get('/name/:name'/*, passport.authenticate('jwt', { session: false})*/, (
     }).catch(err => res.status(404).json(err));
 });
 
-// @route GET api/persona/all
+// @route GET api/personas/:id
+// @desc GET persona by name
+// @access Private
+router.get('/:id'/*, passport.authenticate('jwt', { session: false})*/, (req, res) => {
+  const errors = {};
+  Persona.findById(req.params.id).then(persona => {
+      if (!persona) {
+        errors.noPersona = 'There is no persona for this id';
+        return res.status(404).json(errors);
+      }
+      res.json(persona);
+    }).catch(err => res.status(404).json(err));
+});
+
+// @route GET api/personas/all
 // @desc GET all personas
 // @access Private
-router.get('/all'/*, passport.authenticate('jwt', { session: false})*/, (reg, res) => {
+router.get('/all'/*, passport.authenticate('jwt', { session: false})*/, (req, res) => {
   const errors = {};
   Persona.find().then(personas => {
       if (!personas) {
@@ -44,9 +58,61 @@ router.get('/all'/*, passport.authenticate('jwt', { session: false})*/, (reg, re
     }).catch(err => res.status(404).json({personas: 'There are no personas'}))
 });
 
+// @route GET api/personas/all/:id
+// @desc GET all user's personas
+// @access Private
+router.get('/all/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
+  const errors = {};
+  Persona.find({ user: req.params.id }).then(personas => {
+      if (!personas) {
+        errors.noPersonas = 'There are no personas'
+        return res.status(404).json(errors);
+      }
+      res.json(personas);
+    }).catch(err => res.status(404).json({personas: 'There are no personas'}))
+});
+
+// @route POST api/personas/:id
+// @desc POST Edit persona
+// @access Private
+router.post('/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
+  const { errors, isValid } = validatePersonaInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const personaFields = {};
+  personaFields.user = req.user.id;
+  if (req.body.name) personaFields.name = req.body.name;
+  if (req.body.avatar) personaFields.avatar = req.body.avatar;
+  if (req.body.cRating) personaFields.cRating = req.body.cRating;
+  if (req.body.gRating) personaFields.gRating = req.body.gRating;
+  if(typeof req.body.actions !== 'undefined'){
+    personaFields.actions = req.body.actions.split(',');
+  }
+  personaFields.social = {};
+  if (req.body.twitter) personaFields.social.twitter = req.body.twitter;
+  if (req.body.instagram) personaFields.social.instagram = req.body.instagram;
+  if (req.body.facebook) personaFields.social.facebook = req.body.facebook;
+  if (req.body.email) personaFields.social.email = req.body.email;
+  if (req.body.youtube) personaFields.social.youtube = req.body.youtube;
+
+  Persona.findById(req.params.id).then(persona => {
+    if (persona) {
+      Persona.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: personaFields },
+        { new: true }
+      ).then(persona => res.json(persona));
+    } else {
+      errors.noPersonas = 'There are no personas'
+      return res.status(404).json(errors);
+    }
+  })
+});
 
 // @route POST api/personas
-// @desc POST Create or Edit persona
+// @desc POST Create persona
 // @access Private
 router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => {
   const { errors, isValid } = validatePersonaInput(req.body);
@@ -71,23 +137,36 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
   if (req.body.youtube) personaFields.social.youtube = req.body.youtube;
 
   Persona.findOne({user: req.user.id}).then(persona => {
-    if (persona) {
-      Persona.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: personaFields },
-        { new: true }
-      ).then(persona => res.json(persona));
-    } else {
-      Persona.findOne({ name: personaFields.name }).then(persona => {
+    // if (persona) {
+    //   Persona.findOneAndUpdate(
+    //     { user: req.user.id },
+    //     { $set: personaFields },
+    //     { new: true }
+    //   ).then(persona => res.json(persona));
+    // } else {
+      Persona.findOne({ user: req.user.id, name: personaFields.name }).then(persona => {
         if (persona) {
           errors.name = 'That name already exists';
-          res.status(400).json(errors);
+          return res.status(400).json(errors);
         }
 
         new Persona(personaFields).save().then(persona => res.json(persona));
       });
-    }
+    // }
   })
 });
+
+// @route   DELETE api/personas
+// @desc    Delete persona
+// @access  Private
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Persona.findOneAndRemove({ _id: req.params.id }).then(() => {
+      res.json({ success: true })
+    });
+  }
+);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const passport = require('passport');
 
 const Action = require('../../models/Action');
 const Profile = require('../../models/Profile');
+const Persona = require('../../models/Persona');
 
 const validateActionInput = require('../../validation/action');
 
@@ -29,7 +30,7 @@ router.get('/'/*, passport.authenticate('jwt', { session: false})*/, (req, res) 
 router.get('/persona/:persona_id'/*, passport.authenticate('jwt', { session: false})*/, (req, res) => {
   const errors = {};
 
-  Action.findOne({ persona: req.params.persona_id }).then(actions => {
+  Action.find({ persona: req.params.persona_id }).then(actions => {
       if (!actions) {
         errors.noProfile = 'There is no actions for this persona';
         return res.status(404).json(errors);
@@ -44,7 +45,7 @@ router.get('/persona/:persona_id'/*, passport.authenticate('jwt', { session: fal
 router.get('/user/:user_id'/*, passport.authenticate('jwt', { session: false})*/, (req, res) => {
   const errors = {};
 
-  Profile.findOne({ user: req.params.user_id }).then(actions => {
+  Profile.find({ user: req.params.user_id }).then(actions => {
       if (!actions) {
         errors.noProfile = 'There is no actions for this user';
         return res.status(404).json(errors);
