@@ -22,7 +22,7 @@ export const createProfile = (profileData, history) => dispatch => {
 }
 
 export const deleteAccount = () => dispatch => {
-  if (window.confirm('Are you sure? This can not be undone!')) {
+  if (window.confirm('Tem certeza? Isso não pode ser desfeito!')) {
     axios.delete('/api/profile').then(res => dispatch({
       type: SET_CURRENT_USER,
       payload: {}

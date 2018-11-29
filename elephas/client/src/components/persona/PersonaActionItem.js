@@ -13,17 +13,26 @@ class PersonaActionItem extends Component{
     const { action, auth } = this.props;
 
     return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-12">
-            <p className="text">{ action.text }</p>
-            <div className="row">
-              <div className="col-sm-4">Goodness:{' '}{ action.gRating }</div>
-              <div className="col-sm-4">Agreement:{' '}{ action.cRating }</div>
-              <div className="col-sm-4">
-                <button onClick={this.onDeleteClick.bind(this, action)} className="btn btn-danger mr-1" type="button">
-                  <i className="fas fa-times" />
-                </button>
+      <div>
+        <div className="card card-body">
+          <div className="row">
+            <div className="col-md-12">
+              <p className="lead text">{ action.text }</p>
+              <div className="row">
+                <div className="col-sm-4 text-muted">
+                  <i class="fas fa-yin-yang"></i>{' '}
+                  Bondade:{' '}{ action.gRating }</div>
+                <div className="col-sm-4 text-muted">
+                  <i class="fas fa-magnet"></i>{' '}
+                  Sintonia:{' '}{ action.cRating }</div>
+                <div className="col-sm-4 text-muted">
+                  <button
+                    onClick={ this.onDeleteClick.bind(this, action) }
+                    className="btn btn-light text-muted">
+                    <i className="fas fa-trash reder"></i>{' '}
+                    Excluir Ação
+                  </button>
+                </div>
               </div>
             </div>
           </div>

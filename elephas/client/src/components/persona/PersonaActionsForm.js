@@ -50,15 +50,15 @@ class PersonaActionsForm extends Component {
   render () {
     const { errors } = this.state;
     return (
-      <div className="card card-body mb-3">
+      <div className="card">
         <div className="card-header bg-card text-white">
-          New Action
+          Nova Ação
         </div>
         <form onSubmit={ this.onSubmit }>
           <div className="row">
             <div className="col-md-12">
               <TextAreaFieldGroup
-                placeholder="What's done?"
+                placeholder="O que houve?"
                 name="text"
                 value={ this.state.text }
                 onChange={ this.onChange }
@@ -67,9 +67,10 @@ class PersonaActionsForm extends Component {
               <div className="row">
                 <div className="col-sm-4">
                   <InputGroup
-                    placeholder="Goodness"
+                    placeholder="Bondade"
+                    icon="fas fa-yin-yang"
                     name="gRating"
-                    type="Number"
+                    type="number"
                     value={ this.state.gRating }
                     onChange={ this.onChange }
                     error={ errors.text }
@@ -77,16 +78,19 @@ class PersonaActionsForm extends Component {
                 </div>
                 <div className="col-sm-4">
                   <InputGroup
-                    placeholder="Agreement"
+                    placeholder="Sintonia"
+                    icon="fas fa-magnet"
                     name="cRating"
-                    type="Number"
+                    type="number"
                     value={ this.state.cRating }
                     onChange={ this.onChange }
                     error={ errors.text }
                   />
                 </div>
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-dark">Submit</button>
+                  <button type="submit" className="btn btn-lg btn-block back-indigo">
+                    Cadastrar Ação
+                  </button>
                 </div>
               </div>
             </div>

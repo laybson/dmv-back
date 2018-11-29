@@ -20,7 +20,7 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
 
-    let dashboardContent;
+    let dashboardContent, deleteAccountButton;
 
     if (profile === null || loading) {
       dashboardContent = <Spinner />
@@ -28,14 +28,19 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome to Elephas, <Link to={ `/profile/${profile.handle}` }>
-                { profile.handle }
-              </Link>
+            <p className="lead text-muted">Olá, {profile.handle}! Bom te ver por aqui!
             </p>
             <ProfileActions />
-            <div style={{ marginBotton: '60px' }} />
-            <button onClick={ this.onDeleteClick.bind(this) } className="btn btn-danger">Delete My Account</button>
           </div>
+        );
+        deleteAccountButton =
+        (
+          <button
+            onClick={ this.onDeleteClick.bind(this) }
+            className="btn btn-light cantin">
+            <i className="fas fa-trash reder mr-1"></i>
+            Excluir minha conta
+          </button>
         )
       } else {
         dashboardContent = (
@@ -54,7 +59,7 @@ class Dashboard extends Component {
               Avance >
             </Link>
           </div>
-        )
+        );
       }
     }
 
@@ -67,6 +72,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+        { deleteAccountButton }
       </div>
     )
   }

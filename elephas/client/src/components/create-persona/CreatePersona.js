@@ -108,11 +108,11 @@ class CreatePersona extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create a new Persona</h1>
-              <small className="d-block pb-3">* = required fields</small>
+              <h3 className="display-4 text-center">Crie uma nova Persona</h3>
+              <small className="d-block pb-3">* = campos obrigatórios</small>
               <form onSubmit={ this.onSubmit }>
                 <TextFieldGroup
-                  placeholder="* Persona name"
+                  placeholder="* Nome da Persona"
                   name="name"
                   value={ this.state.name }
                   onChange={ this.onChange }
@@ -127,11 +127,11 @@ class CreatePersona extends Component {
                       }))
                     } }
                     className="btn btn-light">
-                    Add Social Network Links
+                    Adicione links de Redes Sociais {'  '}<i className="toco">▼</i>
                   </button>
                 </div>
                 { socialInputs }
-                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/>
+                <input type="submit" value="Cadastrar" className="btn btn-lg btn-block grey-blue-puce mt-4"/>
               </form>
             </div>
           </div>

@@ -56,16 +56,17 @@ class EditProfile extends Component {
   render () {
     const { errors } = this.state;
     return (
-      <div>
+      <div className="container centered">
+        <p className="lead text-muted text-center">Como você prefere ser chamado?</p>
         <form onSubmit={ this.onSubmit }>
           <TextFieldGroup
-            placeholder="* Your name"
+            placeholder="* Nome"
             name="handle"
             value={ this.state.handle }
             onChange={ this.onChange }
             error={ errors.handle }
           />
-          <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/>
+        <input type="submit" value="Confirmar" className="btn btn-lg btn-block grey-blue-puce"/>
         </form>
       </div>
     )

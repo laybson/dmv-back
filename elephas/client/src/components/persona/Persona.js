@@ -21,35 +21,39 @@ class Persona extends Component {
 
   render () {
     const { persona, loading } = this.props.persona;
-    let personaContent;
+    let personaContent, deletePersonaButton;
 
     if (persona === null || loading) {
       personaContent = <Spinner />
     } else {
       personaContent = (
         <div>
-        <Link to="/personas" className="btn btn-light mb-3 float-left">
-          Back to Personas
-        </Link>
-        <button onClick={ this.onDeleteClick.bind(this) } className="btn btn-danger">Delete Persona</button>
           <div className="row">
             <div className="container">
               <div className="col-md-12">
                 <PersonaHeader persona={persona} />
               </div>
-              <div className="col-md-6" />
               <PersonaActions />
             </div>
           </div>
         </div>
       )
+      deletePersonaButton = (
+        <button
+          onClick={ this.onDeleteClick.bind(this) }
+          className="btn btn-light">
+          <i className="fas fa-trash reder mr-1"></i>
+          Excluir Persona
+        </button>
+      )
     }
 
     return (
       <div className="persona">
-        <div className="persona">
-          <div className="persona">
-            <div className="persona">
+        { deletePersonaButton }
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               { personaContent }
             </div>
           </div>

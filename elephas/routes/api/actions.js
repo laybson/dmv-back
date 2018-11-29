@@ -152,6 +152,7 @@ calculateRatings = (id) => {
     personaData.gRating = String(gRating);
 
     Persona.findById(id).then(persona => {
+      console.log(persona);
       if (persona) {
         Persona.findOneAndUpdate(
           { _id: id },

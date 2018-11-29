@@ -51,6 +51,10 @@ img {
   color: #7d98a1;
 }
 
+.reder {
+  color: rgba(255,0,0);
+}
+
 .grey-blue-puce {
   background-color: rgba(255,255,255,0);
   color: #7d98a1;
@@ -60,10 +64,43 @@ img {
   color: #462407;
 }
 
+.indigo-hover {
+}
+
+.no-hover {
+}
+
+.no-hover:hover {
+  background-color: rgba(255,255,255,0);
+  color: rgba(255,255,255,0);
+}
+
+.indigo-hover:hover {
+  background-color: #223843 !important;
+}
+
+.toco {
+  font-size: 70%;
+}
+
 .centered {
   position: absolute;
   left: 50%;
   top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cantin {
+  position: absolute;
+  left: 90%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.cantao {
+  position: absolute;
+  left: 10%;
+  top: 10%;
   transform: translate(-50%, -50%);
 }
 

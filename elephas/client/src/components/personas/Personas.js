@@ -23,17 +23,17 @@ class Personas extends Component {
           <PersonaItem key={ persona._id } persona={ persona }/>
         ))
       } else {
-        personasItems = <p>No personas found</p>
+        personasItems = <p className="lead text-muted text-center">Crie suas Personas</p>
       }
     }
     return (
       <div className="personas">
-        <div className="container">
+        <Link to="/create-persona" className="btn btn-light">
+          <i className="fas fa-user indigo mr-1"></i>
+            Criar Persona</Link>
+          <div className="container centered">
           <div className="row">
             <div className="col-md-12">
-              <Link to="/create-persona" className="btn btn-light">
-                <i className="fas fa-user text-info mr-1"></i>
-                Create Persona</Link>
               { personasItems }
             </div>
           </div>

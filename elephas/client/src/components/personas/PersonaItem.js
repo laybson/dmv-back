@@ -14,26 +14,30 @@ class PersonaItem extends Component {
   render () {
     const { persona } = this.props;
     return (
-      <div className="card card-body bg-light mb-3 container-fluid">
-        <div className="row">
-          <div className="col-2">
-            <img src={ elephant } alt="" className="rounded-circle" />
-          </div>
-          <div className="col-10">
-            <p>{ persona.name }</p>
+      <Link to={`/personas/${persona._id}`} className="no-hover">
+        <div className="card card-body container-fluid indigo-hover">
             <div className="row">
-              <div className="col-sm-6">Goodness:{' '}{ persona.gRating }</div>
-              <div className="col-sm-6">Agreement:{' '}{ persona.cRating }</div>
+              <div className="col-2">
+                <img src={ elephant } alt="" className="rounded-circle" />
+              </div>
+              <div className="col-10">
+                <p className="lead text-muted">{ persona.name }</p>
+                <div className="row">
+                  <div className="text-muted col-sm-6">
+                    <i class="fas fa-yin-yang"></i>{' '}
+                    Bondade:{' '}{ persona.gRating }</div>
+                  <div className="text-muted col-sm-6">
+                    <i class="fas fa-magnet"></i>{' '}
+                    Sintonia:{' '}{ persona.cRating }</div>
+                </div>
+                {/*<div>
+                  <button onClick={ this.onDeleteClick.bind(this) }
+                  className="btn btn-danger pull-right">Delete Persona</button>
+                </div>*/}
+              </div>
             </div>
-            <div>
-              <Link to={ `/personas/${persona._id}` } className="btn btn-info pull-right">
-                View Persona
-              </Link>
-              <button onClick={ this.onDeleteClick.bind(this) } className="btn btn-danger pull-right">Delete Persona</button>
-            </div>
-          </div>
         </div>
-      </div>
+      </Link>
     )
   }
 }
