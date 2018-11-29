@@ -1,4 +1,4 @@
-import { GET_PERSONA, GET_PERSONAS, PERSONA_LOADING, CLEAR_CURRENT_PERSONA } from '../rActions/types';
+import { DELETE_PERSONA, GET_PERSONA, GET_PERSONAS, PERSONA_LOADING, CLEAR_CURRENT_PERSONA } from '../rActions/types';
 
 const initialState = {
   persona: null,
@@ -24,6 +24,11 @@ export default function(state = initialState, action) {
         ...state,
         personas: action.payload,
         loading: false
+      }
+    case DELETE_PERSONA:
+      return {
+        ...state,
+        personas: state.persona.personas.filter(persona => persona._id !== action.payload)
       }
     case CLEAR_CURRENT_PERSONA:
       return {

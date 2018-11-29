@@ -1,4 +1,4 @@
-import { ADD_ACTION, GET_ACTIONS, ACTION_LOADING} from '../rActions/types';
+import { ADD_ACTION, GET_ACTIONS, ACTION_LOADING, DELETE_ACTION} from '../rActions/types';
 
 const initialState = {
   actions: [],
@@ -6,8 +6,8 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
-  switch (action.type) {
+export default function(state = initialState, rAction) {
+  switch (rAction.type) {
     case ACTION_LOADING:
       return {
         ...state,
@@ -16,13 +16,18 @@ export default function(state = initialState, action) {
     case GET_ACTIONS:
       return {
         ...state,
-        actions: action.payload,
+        actions: rAction.payload,
         loading: false
       }
     case ADD_ACTION:
       return {
         ...state,
-        actions: [action.payload, ...state.actions]
+        actions: [rAction.payload, ...state.actions]
+      }
+    case DELETE_ACTION:
+      return {
+        ...state,
+        actions: state.actions.filter(action => action._id !== rAction.payload._id)
       }
     default:
       return state;

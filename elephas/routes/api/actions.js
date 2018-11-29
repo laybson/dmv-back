@@ -80,21 +80,25 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     cRating: req.body.cRating,
     gRating: req.body.gRating,
   });
-  console.log("newAction",newAction)
 
-  newAction.save().then(action => res.json(action));
+  newAction.save().then(action => {
+    calculateRatings(req.body.persona);
+    res.json(action)});
 });
 
 // @route DELETE api/actions/:id
 // @desc Delete Action
 // @access Private
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log("REQ",req.body)
   Profile.findOne({ user: req.user.id }).then(profile => {
     Action.findById(req.params.id).then(action => {
       if (action.user.toString() !== req.user.id) {
         return res.status(401).json({ noAthorized: 'User not authorized' });
       }
-      post.remove().then(() => res.json({ success: true }));
+      action.remove().then(() => {
+        // calculateRatings(req, res);
+        res.json({ success: true })})
     }).catch(err => res.status(404).json({ actionNotFound: 'No action found with this Id' }));
   });
 });
@@ -114,7 +118,8 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
       text: req.body.text
     }
     action.comments.unshift(newComment);
-    action.save().then(action => res.json(action))
+    action.save().then(action => {
+      res.json(action)})
   }).catch(err => res.status(404).json({ actionNotFound: 'No action found' }));
 });
 
@@ -133,6 +138,31 @@ router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session
     action.save().then(action => res.json(action));
   }).catch(err => res.status(404).json({ actionNotFound: 'No action found' }));
 });
+
+calculateRatings = (id) => {
+  Action.find({ persona: id }).then(actions => {
+    let personaData = {}
+    let cRating = 0;
+    let gRating = 0;
+    for (const action of actions) {
+      cRating += Number(action.cRating);
+      gRating += Number(action.gRating);
+    }
+    personaData.cRating = String(cRating);
+    personaData.gRating = String(gRating);
+
+    Persona.findById(id).then(persona => {
+      if (persona) {
+        Persona.findOneAndUpdate(
+          { _id: id },
+          { $set: personaData },
+          { new: true }
+        )
+      }
+    })
+
+  })
+}
 
 
 module.exports = router;

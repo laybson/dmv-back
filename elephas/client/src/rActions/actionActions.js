@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_ACTION, GET_ERRORS, GET_ACTIONS, ACTION_LOADING } from './types';
+import { ADD_ACTION, GET_ERRORS, GET_ACTIONS, ACTION_LOADING, DELETE_ACTION } from './types';
 
 export const addAction = actionData => dispatch => {
   axios.post('/api/actions', actionData).then(res => dispatch({
@@ -19,6 +19,17 @@ export const getPersonaActions = id => dispatch => {
   })).catch(err => dispatch({
     type: GET_ACTIONS,
     payload: null
+  }));
+}
+
+export const deleteAction = action => dispatch => {
+  console.log("ACTION",action)
+  axios.delete(`/api/actions/${action._id}`, action).then(res => dispatch({
+    type: DELETE_ACTION,
+    payload: action
+  })).catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data
   }));
 }
 

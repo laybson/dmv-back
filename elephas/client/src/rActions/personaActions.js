@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PERSONA, PERSONA_LOADING, CLEAR_CURRENT_PERSONA, GET_PERSONAS, GET_ERRORS } from './types';
+import { DELETE_PERSONA, GET_PERSONA, PERSONA_LOADING, CLEAR_CURRENT_PERSONA, GET_PERSONAS, GET_ERRORS } from './types';
 
 // export const getCurrentProfile = () => dispatch => {
 //   dispatch(setProfileLoading());
@@ -60,7 +60,10 @@ export const getPersonas = user => dispatch => {
 export const deletePersona = (persona, history) => dispatch => {
   if (window.confirm('Are you sure? This can not be undone!')) {
     axios.delete(`/api/personas/${persona._id}`).then(res =>
-      history.push(`/personas`)).catch(err => dispatch({
+      history.push(`/personas`)).then(res => dispatch({
+        type: DELETE_PERSONA,
+        payload: persona._id
+      })).catch(err => dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       }))
