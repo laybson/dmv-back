@@ -50,32 +50,33 @@ class Register extends Component {
 
   render() {
     const { errors } = this.state;
+    document.body.style = 'background: #223843;';
     return (
-      <div className="register">
-        <div className="container">
+      <div className="register back-indigo">
+        <div className="container centered">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your Elephas account</p>
+              <h3 className="display-4 text-center">Registre-se</h3>
+              <p className="lead text-center">Crie seu Elephas</p>
               <form noValidate onSubmit={ this.onSubmit }>
                 <TextFieldGroup
-                  placeholder="Name"
+                  placeholder="Nome"
                   name="name"
                   value={ this.state.name }
                   onChange={ this.onChange }
                   error={ errors.name }
                   />
                 <TextFieldGroup
-                  placeholder="Email Address"
+                  placeholder="Email"
                   name="email"
                   type="email"
                   value={ this.state.email }
                   onChange={ this.onChange }
                   error={ errors.email }
-                  info="This site uses Gravatar so if you want a profile image, use a email registered on Gravatar"
+                  info="Este site usa Gravatar, logo, use um email cadastrado no Gravatar se quiser uma foto no perfil"
                   />
                   <TextFieldGroup
-                    placeholder="Password"
+                    placeholder="Senha"
                     name="password"
                     type="password"
                     value={ this.state.password }
@@ -83,14 +84,14 @@ class Register extends Component {
                     error={ errors.password }
                     />
                   <TextFieldGroup
-                    placeholder="Confirm Password"
+                    placeholder="Confirme a Senha"
                     name="passwordOk"
                     type="password"
                     value={ this.state.passwordOk }
                     onChange={ this.onChange }
                     error={ errors.passwordOk }
                     />
-                  <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+                  <input type="submit" value="Registrar" className="btn btn-lg btn-block grey-blue mt-4" />
               </form>
             </div>
           </div>

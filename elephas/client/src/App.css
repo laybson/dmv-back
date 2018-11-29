@@ -4,7 +4,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('img/showcase.jpg') no-repeat;
+  background-color: #223843;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -15,6 +15,56 @@ img {
 
 .landing-inner {
   padding-top: 80px;
+}
+
+.back-puce {
+  background-color: #462407;
+  color: #fff;
+}
+
+.puce {
+  color: #462407;
+}
+
+.back-indigo {
+  background-color: #223843;
+  color: #fff;
+}
+
+
+
+.indigo {
+  color: #223843;
+}
+
+.indigo:hover {
+    color: #fff;
+}
+
+.back-grey-blue {
+  background-color: #7d98a1;
+  color: #fff;
+}
+
+.grey-blue {
+  background-color: rgba(255,255,255,0);
+  color: #7d98a1;
+}
+
+.grey-blue-puce {
+  background-color: rgba(255,255,255,0);
+  color: #7d98a1;
+}
+.grey-blue-puce:hover {
+  background-color: rgba(255,255,255,0);
+  color: #462407;
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .dark-overlay {

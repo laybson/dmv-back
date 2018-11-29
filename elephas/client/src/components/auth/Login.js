@@ -46,16 +46,17 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
+    document.body.style = 'background: #223843;';
     return (
-      <div className="login">
-        <div className="container">
+      <div className="login back-indigo">
+        <div className="container centered">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your Elephas account</p>
+              <h3 className="display-4 text-center">Entre</h3>
+              <p className="lead text-center">Identifique-se e entre no Elephas</p>
               <form noValidate onSubmit={ this.onSubmit }>
                 <TextFieldGroup
-                  placeholder="Email Address"
+                  placeholder="Email"
                   name="email"
                   type="email"
                   value={ this.state.email }
@@ -63,7 +64,7 @@ class Login extends Component {
                   error={ errors.email }
                   />
                 <TextFieldGroup
-                  placeholder="Password"
+                  placeholder="Senha"
                   type="password"
                   name="password"
                   value={ this.state.password }
@@ -72,8 +73,8 @@ class Login extends Component {
                   />
                 <input
                   type="submit"
-                  value="Submit"
-                  className="btn btn-info btn-block mt-4" />
+                  value="Entrar"
+                  className="btn btn-lg btn-block grey-blue mt-4" />
               </form>
             </div>
           </div>
