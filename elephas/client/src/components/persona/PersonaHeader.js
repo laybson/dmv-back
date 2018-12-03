@@ -10,55 +10,56 @@ class PersonaHeader extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="card card-body bg-card text-white">
-            <div className="row">
-              <div className="col-4 col-md-3 m-auto">
-                <img src={ elephant } alt="" className="rounded-circle" />
+          <div className="persona-header-card bg-card">
+            <div className="col-2">
+              <img
+                src={ elephant } alt=""
+                className="rounded-circle"
+                style={{ maxHeight: '150px', maxWidth: '150px'}}/>
+            </div>
+            <div className="col-10">
+              <p className="lead name-title">{ persona.name }</p>
+              <div className="row">
+                <div className="col-sm-6">
+                  <i class="fas fa-yin-yang"></i>{' '}
+                  Bondade:{' '}{ persona.gRating }</div>
+                <div className="col-sm-6">
+                  <i class="fas fa-magnet"></i>{' '}
+                  Sintonia:{' '}{ persona.cRating }</div>
               </div>
-            </div>
-            <div className="text-center">
-              <h3 className="display-4 text-center">{ persona.name }</h3>
-            </div>
-            <div className="row text-center">
-              <div className="col-sm-6">
-                <i class="fas fa-yin-yang"></i>{' '}
-                Bondade:{' '}{ persona.gRating }</div>
-              <div className="col-sm-6">
-                <i class="fas fa-magnet"></i>{' '}
-                Sintonia:{' '}{ persona.cRating }</div>
-            </div>
-            <div className="text-center">
-              <p>
-                {isEmpty(persona.social && persona.social.twitter) ? null : (
-                  <a className="text-white p-2" href={persona.social.twitter} target="_blank">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                )}
+              <div>
+                <p class="social-links">
+                  {isEmpty(persona.social && persona.social.twitter) ? null : (
+                    <a className="p-2" href={persona.social.twitter} target="_blank">
+                      <i className="fab fa-twitter social-ico"></i>
+                    </a>
+                  )}
 
-                {isEmpty(persona.social && persona.social.instagram) ? null : (
-                  <a className="text-white p-2" href={persona.social.instagram}>
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                )}
+                  {isEmpty(persona.social && persona.social.instagram) ? null : (
+                    <a className="p-2" href={persona.social.instagram}>
+                      <i className="fab fa-instagram social-ico"></i>
+                    </a>
+                  )}
 
-                {isEmpty(persona.social && persona.social.facebook) ? null : (
-                  <a className="text-white p-2" href={persona.social.facebook}>
-                    <i className="fab fa-facebook"></i>
-                  </a>
-                )}
+                  {isEmpty(persona.social && persona.social.facebook) ? null : (
+                    <a className="p-2" href={persona.social.facebook}>
+                      <i className="fab fa-facebook social-ico"></i>
+                    </a>
+                  )}
 
-                {isEmpty(persona.social && persona.social.youtube) ? null : (
-                  <a className="text-white p-2" href={persona.social.youtube}>
-                    <i className="fab fa-youtube"></i>
-                  </a>
-                )}
+                  {isEmpty(persona.social && persona.social.youtube) ? null : (
+                    <a className="p-2" href={persona.social.youtube}>
+                      <i className="fab fa-youtube social-ico"></i>
+                    </a>
+                  )}
 
-                {isEmpty(persona.social && persona.social.email) ? null : (
-                  <a className="text-white p-2" href={persona.social.email}>
-                    <i className="fas fa-at"></i>
-                  </a>
-                )}
-              </p>
+                  {isEmpty(persona.social && persona.social.email) ? null : (
+                    <a className="p-2" href={persona.social.email}>
+                      <i className="fas fa-at social-ico"></i>
+                    </a>
+                  )}
+                </p>
+              </div>
             </div>
           </div>
         </div>

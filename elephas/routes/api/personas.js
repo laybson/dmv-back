@@ -7,6 +7,7 @@ const validatePersonaInput = require('../../validation/persona');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Action = require('../../models/Action');
 const Persona = require('../../models/Persona');
 
 // @route GET api/personas/test
@@ -70,6 +71,46 @@ router.get('/all/:id', passport.authenticate('jwt', { session: false}), (req, re
       }
       res.json(personas);
     }).catch(err => res.status(404).json({personas: 'There are no personas'}))
+});
+
+// @route POST api/personas/ratings/:id
+// @desc POST Edit personas ratings
+// @access Private
+router.post('/ratings/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
+  // const { errors, isValid } = validatePersonaInput(req.body);
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+  const errors = {};
+  let personaData = {};
+  personaData.user = req.user.id;
+  console.log("AAAA0", req.params.id)
+  Action.find({ persona: req.params.id }).then(actions => {
+    console.log("AAAA1", actions)
+    let cRating = 0;
+    let gRating = 0;
+    for (const action of actions) {
+      cRating += Number(action.cRating);
+      gRating += Number(action.gRating);
+    }
+    personaData.cRating = String(cRating);
+    personaData.gRating = String(gRating);
+  }).then(() => {
+
+    Persona.findById(req.params.id).then(persona => {
+      console.log("AAAA2", persona, personaData)
+      if (persona) {
+        Persona.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: personaData },
+          { new: true }
+        ).then(persona => res.json(persona));
+      } else {
+        errors.noPersonas = 'There are no personas'
+        return res.status(404).json(errors);
+      }
+    })
+  })
 });
 
 // @route POST api/personas/:id

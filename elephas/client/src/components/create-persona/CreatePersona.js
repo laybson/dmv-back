@@ -105,10 +105,10 @@ class CreatePersona extends Component {
     }
     return (
       <div className="create-persona">
-        <div className="container">
+        <div className="container centered">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h3 className="display-4 text-center">Crie uma nova Persona</h3>
+              <p className="lead text-muted text-center">Crie uma nova Persona</p>
               <small className="d-block pb-3">* = campos obrigatórios</small>
               <form onSubmit={ this.onSubmit }>
                 <TextFieldGroup

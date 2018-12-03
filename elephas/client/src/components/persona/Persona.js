@@ -15,7 +15,6 @@ class Persona extends Component {
   }
 
   onDeleteClick (e) {
-    console.log("Props",this.props)
     this.props.deletePersona(this.props.persona.persona, this.props.history);
   }
 
@@ -42,7 +41,7 @@ class Persona extends Component {
         <button
           onClick={ this.onDeleteClick.bind(this) }
           className="btn btn-light">
-          <i className="fas fa-trash reder mr-1"></i>
+          <i className="fas fa-trash puce mr-1"></i>
           Excluir Persona
         </button>
       )

@@ -27,7 +27,7 @@ img {
 }
 
 .back-indigo {
-  background-color: #223843;
+  background-color: #223843 !important;
   color: #fff;
 }
 
@@ -49,6 +49,11 @@ img {
 .grey-blue {
   background-color: rgba(255,255,255,0);
   color: #7d98a1;
+}
+
+.grey-blue:hover {
+  background-color: rgba(255,255,255,0);
+  color: #c3c49e;
 }
 
 .reder {
@@ -77,6 +82,7 @@ img {
 
 .indigo-hover:hover {
   background-color: #223843 !important;
+  color: #c3c49e;
 }
 
 .toco {
@@ -102,6 +108,51 @@ img {
   left: 10%;
   top: 10%;
   transform: translate(-50%, -50%);
+}
+
+.persona-card {
+  max-height: '50px';
+  border: 1px solid rgba(0,0,0,0.125);
+  display: flex;
+  padding: .5rem;
+  color: #6c757d;
+}
+
+.new-action-title {
+  padding: .5rem;
+  background-color: #223843;
+}
+
+.new-action-card {
+  border: 1px solid rgba(22,38,43,0.9);
+}
+
+.persona-header-card {
+  max-height: '200px';
+  border: 1px solid rgba(0,0,0,0.125);
+  display: flex;
+  padding: 1.25rem;
+  color: #fff;
+}
+
+.name-title {
+  font-size: 2.5rem
+}
+
+.persona-pic {
+  max-height: '50px' !important;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-ico {
+  color: #fff;
+}
+
+.social-ico:hover {
+  color: #c3c49e;
 }
 
 .dark-overlay {

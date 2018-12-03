@@ -15,18 +15,22 @@ class PersonaItem extends Component {
     const { persona } = this.props;
     return (
       <Link to={`/personas/${persona._id}`} className="no-hover">
-        <div className="card card-body container-fluid indigo-hover">
+        <div className="persona-card container indigo-hover">
+          <div className="col-md-12">
             <div className="row">
               <div className="col-2">
-                <img src={ elephant } alt="" className="rounded-circle" />
+                <img
+                  src={ elephant } alt=""
+                  className="rounded-circle"
+                  style={{ maxHeight: '72px', maxWidth: '72px'}}/>
               </div>
               <div className="col-10">
-                <p className="lead text-muted">{ persona.name }</p>
+                <p className="lead">{ persona.name }</p>
                 <div className="row">
-                  <div className="text-muted col-sm-6">
+                  <div className="col-sm-6">
                     <i class="fas fa-yin-yang"></i>{' '}
                     Bondade:{' '}{ persona.gRating }</div>
-                  <div className="text-muted col-sm-6">
+                  <div className="col-sm-6">
                     <i class="fas fa-magnet"></i>{' '}
                     Sintonia:{' '}{ persona.cRating }</div>
                 </div>
@@ -36,6 +40,7 @@ class PersonaItem extends Component {
                 </div>*/}
               </div>
             </div>
+          </div>
         </div>
       </Link>
     )

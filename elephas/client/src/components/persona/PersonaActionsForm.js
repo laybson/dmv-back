@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import { addAction } from '../../rActions/actionActions';
+import { updateRatings } from '../../rActions/personaActions';
 
 class PersonaActionsForm extends Component {
   constructor(props) {
@@ -33,8 +34,8 @@ class PersonaActionsForm extends Component {
       gRating: this.state.gRating,
       persona: persona.persona._id
     }
-    console.log("ACTION",actionData)
-    this.props.addAction(actionData);
+    this.props.addAction(actionData)
+    this.props.updateRatings(persona.persona._id);
     this.setState({
       text: '',
       cRating: '',
@@ -50,8 +51,8 @@ class PersonaActionsForm extends Component {
   render () {
     const { errors } = this.state;
     return (
-      <div className="card">
-        <div className="card-header bg-card text-white">
+      <div className="new-action-card">
+        <div className="new-action-title text-white">
           Nova Ação
         </div>
         <form onSubmit={ this.onSubmit }>
@@ -88,7 +89,7 @@ class PersonaActionsForm extends Component {
                   />
                 </div>
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-lg btn-block back-indigo">
+                  <button type="submit" className="btn btn-lg btn-block grey-blue back-indigo">
                     Cadastrar Ação
                   </button>
                 </div>
@@ -104,6 +105,7 @@ class PersonaActionsForm extends Component {
 PersonaActionsForm.propTypes = {
   errors: PropTypes.object.isRequired,
   addAction: PropTypes.func.isRequired,
+  updateRatings: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   persona: PropTypes.object.isRequired
 }
@@ -114,4 +116,4 @@ const mapStateToProps = state => ({
   persona: state.persona
 })
 
-export default connect(mapStateToProps,{ addAction })(PersonaActionsForm);
+export default connect(mapStateToProps,{ addAction, updateRatings })(PersonaActionsForm);

@@ -23,7 +23,6 @@ export const getPersonaActions = id => dispatch => {
 }
 
 export const deleteAction = action => dispatch => {
-  console.log("ACTION",action)
   axios.delete(`/api/actions/${action._id}`, action).then(res => dispatch({
     type: DELETE_ACTION,
     payload: action

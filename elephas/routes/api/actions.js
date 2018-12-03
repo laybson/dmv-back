@@ -82,7 +82,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   });
 
   newAction.save().then(action => {
-    calculateRatings(req.body.persona);
+    // calculateRatings(req.body.persona);
     res.json(action)});
 });
 
@@ -139,31 +139,19 @@ router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session
   }).catch(err => res.status(404).json({ actionNotFound: 'No action found' }));
 });
 
-calculateRatings = (id) => {
-  Action.find({ persona: id }).then(actions => {
-    let personaData = {}
-    let cRating = 0;
-    let gRating = 0;
-    for (const action of actions) {
-      cRating += Number(action.cRating);
-      gRating += Number(action.gRating);
-    }
-    personaData.cRating = String(cRating);
-    personaData.gRating = String(gRating);
-
-    Persona.findById(id).then(persona => {
-      console.log(persona);
-      if (persona) {
-        Persona.findOneAndUpdate(
-          { _id: id },
-          { $set: personaData },
-          { new: true }
-        )
-      }
-    })
-
-  })
-}
+// calculateRatings = (id) => {
+//   Action.find({ persona: id }).then(actions => {
+//     let personaData = {}
+//     let cRating = 0;
+//     let gRating = 0;
+//     for (const action of actions) {
+//       cRating += Number(action.cRating);
+//       gRating += Number(action.gRating);
+//     }
+//     personaData.cRating = String(cRating);
+//     personaData.gRating = String(gRating);
+//   })
+// }
 
 
 module.exports = router;

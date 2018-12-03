@@ -29,9 +29,9 @@ class Personas extends Component {
     return (
       <div className="personas">
         <Link to="/create-persona" className="btn btn-light">
-          <i className="fas fa-user indigo mr-1"></i>
-            Criar Persona</Link>
-          <div className="container centered">
+          <i className="fas fa-user indigo mr-1"></i> Criar Persona
+        </Link>
+        <div className="container">
           <div className="row">
             <div className="col-md-12">
               { personasItems }

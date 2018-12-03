@@ -24,6 +24,17 @@ export const createPersona = (personaData, history) => dispatch => {
     }))
 }
 
+export const updateRatings = id => dispatch => {
+  axios.post(`/api/personas/ratings/${id}`).then(res => dispatch({
+    type: GET_PERSONA,
+    payload: res.data
+  })).catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data
+  }))
+}
+
+
 // export const getPersonas = () => dispatch => {
 //   dispatch(setPersonaLoading());
 //   axios.get('/api/personas/all').then(res => dispatch({

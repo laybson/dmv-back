@@ -38,7 +38,7 @@ class Dashboard extends Component {
           <button
             onClick={ this.onDeleteClick.bind(this) }
             className="btn btn-light cantin">
-            <i className="fas fa-trash reder mr-1"></i>
+            <i className="fas fa-trash puce mr-1"></i>
             Excluir minha conta
           </button>
         )
